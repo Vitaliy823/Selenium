@@ -9,29 +9,38 @@ import java.util.List;
 
 public class review02 {
     public static void main(String[] args) {
-        System.setProperty("webdriver.chrome.driver", "Driver/chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://syntaxprojects.com/basic-radiobutton-demo.php");
-        WebElement femaleRadiobutton = driver.findElement(By.xpath("//input[@name='optradio'and@value='Female']"));
-        //femaleRadiobutton.click();
 
-        //Check if the radio button is enabled.
-        System.out.println("The female radio button is enabled " + femaleRadiobutton.isEnabled());
+        System.setProperty("webdriver.chrome.driver","Driver/chromedriver.exe");
+         WebDriver driver=new ChromeDriver();
 
-        // check if female radiobutton is displayed..
-        femaleRadiobutton.isDisplayed();
-        System.out.println("The female radio button is displayed " + femaleRadiobutton.isDisplayed());
-        // to check if its selected or not
+         driver.get("https://syntaxprojects.com/basic-radiobutton-demo.php");
 
-        femaleRadiobutton.isSelected();
-        System.out.println("The female radio button is displayed " + femaleRadiobutton.isSelected());
+        WebElement femalebtn = driver.findElement(By.xpath("//input[@value='Female' and  @name='optradio']"));
+//        check if the radio btn is enabled
+        System.out.println("the female radio btn is enabled "+femalebtn.isEnabled());
+//        check if the radio btn female is displayed
+        System.out.println("the female radio btn is displayed "+femalebtn.isDisplayed());
+//        check if its selected or not
+        System.out.println("the female radio btn is selected " +femalebtn.isSelected());
 
-        // check if the female radio button s not selected
-        if (!femaleRadiobutton.isSelected()) {
-            femaleRadiobutton.click();
-            System.out.println("The female radio button is displayed " + femaleRadiobutton.isSelected());
+//        check if the button is not selected amd select it
+        if(!femalebtn.isSelected()){
+            femalebtn.click();
         }
+//        check the status of selection again
+        System.out.println("the female radio btn is selected " +femalebtn.isSelected());
 
+
+//        to get all the links in the current webpagen and print their text
+        List<WebElement> links = driver.findElements(By.tagName("a"));
+
+
+        for(WebElement link:links){
+            String name = link.getText();
+            if(!name.isEmpty()){
+                System.out.println(name);
+            }
+        }
 
     }
 }
